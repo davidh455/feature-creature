@@ -1,9 +1,51 @@
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Creature {
-    private String creatureType; //what is the nature of the creature, dragon, human, etc.
-    private int hitPoints; //amount of damage a creature can withstand
-    private int attackPoints; //how much damage creature could inflict
-    private int gold; //material value of creature
-    private boolean alive = true; //whether the creature is still alive or not
+    protected String creatureType; //what is the nature of the creature, dragon, human, etc.
+    protected int hitPoints; //amount of damage a creature can withstand
+    protected int attackPoints; //how much damage creature could inflict
+    protected int gold; //material value of creature
+    protected boolean alive = true; //whether the creature is still alive or not
+
+
+
+
+    public int attacks()
+    {//will return a random number from zero to attackPoints
+        int myReturn = ThreadLocalRandom.current().nextInt(0, this.attackPoints + 1);
+        return myReturn;
+    }//end attacks()
+
+    public String defends(int damage) {// take the damage assessed to the current creature, and provide feedback
+        String myReturn = "";
+
+        if (this.assessDamage(damage)) {// still alive!
+            myReturn += "The " + this.creatureType + " was attacked and took ";
+            myReturn += damage + " damage and ";
+            myReturn += "has " + this.hitPoints + " hit points left!\n";
+        } else {// oh oh!
+            myReturn += "The " + this.creatureType + " was attacked and took ";
+            myReturn += damage + " damage and is dead!\n";
+        }
+        return myReturn;
+    }// end defends()
+
+
+    public boolean assessDamage(int ap)
+    {
+        //take the current hitPoints, and subtract the attackPoints
+        this.hitPoints -= ap;
+        //if HP goes below zero, creature is dead
+        if (this.hitPoints < 1)
+        {//game over!
+            this.alive = false;
+            this.hitPoints = 0;
+            return false;
+        }else {
+            return true;
+        }
+    }//end assessDamage()
+
 
     public String getCreatureType() {
         return creatureType;

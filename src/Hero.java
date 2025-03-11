@@ -30,8 +30,8 @@ public class Hero extends Creature{
         myReturn += ", character=" + this.character;
         myReturn += ", hitPoints=" + this.getHitPoints();
         myReturn += ", attackPoints=" + this.getAttackPoints();
-        myReturn += ", gold=" + this.getGold();
-        myReturn += ", alive=" + this.isAlive() + "]";
+        myReturn += ", gold=" + this.gold;
+        myReturn += ", alive=" + this.alive + "]";
         return myReturn;
     }//end toString()
 
