@@ -14,6 +14,12 @@ public class Monster extends Creature {
         this.mode = mode;
     }
 
+    @Override
+    public String defends(int ap) {
+        return "The " +  this.mode + " " + super.defends(ap);
+    }//end defends()
+
+
     // Override toString() method to include mode for the Monster class
     public String toString() {
         String myReturn = this.getClassName();

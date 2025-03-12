@@ -24,6 +24,12 @@ public class Hero extends Creature{
         this.character = character;
     }
 
+    @Override
+    public String defends(int ap) {
+        return this.name + " the " +  this.character + " " + super.defends(ap);
+    }//end defends()
+
+
     public String toString() {
         String myReturn = this.getClassName();
         myReturn += " [name=" + this.name;

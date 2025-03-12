@@ -1,6 +1,6 @@
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Creature {
+public abstract class Creature implements Entity {
     protected String creatureType; //what is the nature of the creature, dragon, human, etc.
     protected int hitPoints; //amount of damage a creature can withstand
     protected int attackPoints; //how much damage creature could inflict
@@ -16,19 +16,19 @@ public class Creature {
         return myReturn;
     }//end attacks()
 
-    public String defends(int damage) {// take the damage assessed to the current creature, and provide feedback
+    public String defends(int damage)
+    {//take the damage assessed to the current creature, and provide feedback
         String myReturn = "";
 
-        if (this.assessDamage(damage)) {// still alive!
-            myReturn += "The " + this.creatureType + " was attacked and took ";
-            myReturn += damage + " damage and ";
+        if(this.assessDamage(damage)){//still alive!
+            myReturn += this.creatureType + " was attacked and took " + damage + " damage and ";
             myReturn += "has " + this.hitPoints + " hit points left!\n";
-        } else {// oh oh!
-            myReturn += "The " + this.creatureType + " was attacked and took ";
-            myReturn += damage + " damage and is dead!\n";
+        }else {//oh oh!
+            myReturn += this.creatureType + " was attacked and took " + damage + " damage and is dead!\n";
         }
         return myReturn;
-    }// end defends()
+    }//end defends()
+
 
 
     public boolean assessDamage(int ap)

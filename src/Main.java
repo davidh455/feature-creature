@@ -1,6 +1,7 @@
 //David Hoang
 import java.io.*;
 import java.lang.Thread;
+import java.util.ArrayList;
 
 
 public class Main {
@@ -13,27 +14,22 @@ public class Main {
 //        System.out.println(hero);
 //        System.out.println(monster);
 
-        Hero myHero = new Hero("Hero",23,7,0,"Conan", "Barbarian");
-        Monster myMonster = new Monster("Dragon",30,5,500,"fierce");
-        boolean gameOn = true; //continue until someone's dead
-
-        while (gameOn) {
-            if(!myMonster.isAlive() || !myHero.isAlive()){// somebody's dead, game over
-
-                if(myHero.isAlive()) {//time for gold!
-                    myHero.setGold(myHero.getGold() + myMonster.getGold());
-                    String output = "Our Hero " + myHero.getName() + " got " + myMonster.getGold() + " gold and now has a total of " + myHero.getGold() + " gold.";
-                    System.out.println(output);
-                }
+        // This is the attack stuff
+//        Hero myHero = new Hero("Hero",23,7,0,"Conan", "Barbarian");
+//        Monster myMonster = new Monster("Dragon",30,5,500,"fierce");
+//        Game.fight(myMonster, myHero);
 
 
-                gameOn = false;
-                break;
-            }else{
-                System.out.println(myHero.defends(myMonster.attacks()));
-                System.out.println(myMonster.defends(myHero.attacks()));
-                Thread.sleep(1000);
-            }
+        Hero myHero = new Hero("Hero",23,5,0,"Conan","Barbarian");
+
+        ArrayList<Entity> entities = new ArrayList<Entity>();
+
+        entities.add(new Monster("Imp",10,5,2,"timid"));
+        entities.add(new Elemental("Salamander",2));
+        entities.add(new Monster("Dragon",100,10,4,"fierce"));
+
+        for (Entity entity : entities) {
+            Game.fight(entity, myHero);
         }
 
     }
